@@ -1,0 +1,77 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Tavarua Engenharia</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <div class="navbar navbar-fixed-top header">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="logo"><a href="#"><img class="img-responsive" src="~/images/logo.png" alt="Tavarua Engenharia" /></a></div>
+                </div>
+                <div class="col-sm-8 main-menu">
+                    <ul class="nav navbar-nav pull-right">
+                        <li id="home"><a href="/Home/Index">Home</a></li>
+                        <li id="about"><a href="/About/Index">Sobre</a></li>
+                        <li id="service"><a href="/Service/Index">Serviços</a></li>
+                        <li id="portfolio"><a href="/Portfolio/Index">Portifólio</a></li>
+                        <li id="contact"><a href="/Contact/Index">Contato</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container body-content">
+        @RenderBody()
+    </div>
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-10 col-lg-offset-1 text-center">
+                    <h4>
+                        <strong>Tavarua Engenharia</strong>
+                    </h4>
+                    <p>
+                        Rua dos Fundadores
+                        <br>Praia do Sonho, Itanhaém
+                    </p>
+                    <ul class="list-unstyled">
+                        <li><i class="fa fa-phone fa-fw"></i> (11) 98200-7661</li>
+                        <li>
+                            <i class="fa fa-envelope-o fa-fw"></i> <a href="mailto:claudioni.engenharia@gmail.com">claudioni.engenharia@gmail.com</a>
+                        </li>
+                    </ul>
+                    <br />
+                    <p>Copyright © Tavarua Engenharia @DateTime.Now.Year</p>
+                </div>
+            </div>
+        </div>            
+    </footer>
+
+    @Scripts.Render("~/bundles/jquery")
+    <script>
+
+        $(document).ready(function () {
+            var controllerName = '@ViewContext.RouteData.Values["Controller"].ToString()';
+            debugger;
+            $("ul.nav li").each(function () {
+                var id = $(this).attr("id");
+
+                if (id == controllerName.toLowerCase()) {
+                    $(this).addClass("active");
+                } else {
+                    $(this).removeClass("active");
+                }
+            });
+        });
+
+    </script>
+    @RenderSection("scripts", required: false)
+</body>
+</html>
